@@ -1,0 +1,271 @@
+
+:root {
+ --color-white: #ffffff;
+ --color-grey: #6C6C6C;
+ --color-beige: #C0965C;
+ --color-beige-hover: #c06c3d;
+}
+
+@mixin geometria {
+  font-family: 'Geometria', sans-serif;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+body {
+  @include geometria;
+  margin: 0;
+  padding: 0;
+  background: #0E0E0E;
+}
+
+.container {
+  position: relative;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.content {
+  max-width: 990px;
+  margin: 0 auto;
+}
+
+header {
+  padding: 85px 0 40px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+}
+
+.burger-box {
+  width: 25px;
+  margin-right: 65px;
+  cursor: pointer;
+  &__item {
+    height: 3px;
+    background: #C0965C;
+    transition: all 400ms ease;
+    &:nth-child(2) {
+      width: 75%;
+      margin: 5px 0;
+    }
+  }
+  &:hover &__item {
+    width: 100%;
+  }
+}
+
+.logo-box img {
+  max-width: 296px;
+}
+
+.block_01 {
+  padding: 60px 140px;
+}
+
+.title-box {
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 900;
+  color: var(--color-white);
+  margin-bottom: 84px;
+  & span {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+    color: var(--color-grey);
+    margin-left: 32px;
+    & b {
+      display: block;
+    }
+  }
+}
+
+.card-info {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 69px;
+  &__item {
+    flex: 0 0 50%;
+    width: 50%;
+    font-weight: bold;
+    margin-bottom: 36px;
+    &-numb {
+      font-size: 36px;
+      line-height: 45px;
+      color: var(--color-beige);
+    }
+    &-title {
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--color-grey);
+    }
+  }
+}
+
+.custom-button {
+  width: 100%;
+  max-width: 290px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-white);
+  border-radius: 10px;
+  padding: 24px 44px;
+  background: var(--color-beige);
+  transition: all 400ms ease;
+  &:hover {
+    background: var(--color-beige-hover);
+  }
+}
+
+.card-box.obj {
+  position: absolute;
+  right: 0;
+}
+
+.block_02 {
+  padding: 140px 0 85px;
+}
+
+.content-title {
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.content-subtitle {
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: var(--color-grey);
+  & span {
+    display: block;
+  }
+}
+
+.pluses-box {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+  &__item {
+    flex: 0 0 20%;
+    width: 20%;
+    &-icon {
+      width: 58px;
+      margin-bottom: 23px;
+      & img {
+        width: 100%;
+      }
+    }
+    &-title {
+      font-size: 18px;
+      line-height: 23px;
+      font-weight: bold;
+      color: var(--color-white);
+      margin-bottom: 18px;
+    }
+    &-description {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: bold;
+      color: var(--color-grey);
+    }
+  }
+}
+
+.block_03 {
+  padding: 85px 0 75px;
+}
+
+.takes-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 75px;
+  &__item {
+    flex: 0 0 287px;
+    width: 287px;
+    margin-bottom: 45px;
+    &-image {
+      margin-bottom: 32px;
+      & img {
+        width: 100%;
+      }
+    }
+    &-title {
+      font-size: 18px;
+      line-height: 23px;
+      font-weight: bold;
+      color: var(--color-white);
+      margin-bottom: 21px;
+    }
+    &-subtitle {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: bold;
+      color: var(--color-grey);
+    }
+    &-icons {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      & img {
+        margin: 0 28px 21px 0;
+      }
+    }
+  }
+}
+
+.block_04 {
+  padding: 75px 0 95px;
+}
+
+.content-freetitle {
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: var(--color-white);
+  & span {
+    text-transform: uppercase;
+    color: var(--color-beige);
+  }
+}
+
+.support-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 60px;
+  &__item {
+    flex: 0 0 50%;
+    width: 50%;
+    &-image {
+      max-width: 374px;
+      & img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+
+
