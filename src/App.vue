@@ -1,7 +1,63 @@
 <template>
     <div id="app">
         <main>
-            <div class="menu-box">
+            <div class="popup-box"
+                 :class="{isOpen: popup}"
+                 v-click-outside="closeForm"
+            >
+                <div class="popup-box__container">
+                    <div class="form-box">
+                        <div class="close-popup"
+                             @click="closeForm"
+                        >
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="form-box__title">
+                            Заявка на карту
+                        </div>
+                        <form action="" method="post">
+                            <validation-provider rules="required"
+                                                 v-slot="{ errors }"
+                                                 v-for="(item, i) in items"
+                                                 :key="i"
+                            >
+                                <customInput
+                                    :type="item.type"
+                                    :name="item.model"
+                                    :label="item.label"
+                                ></customInput>
+                                <span>{{ errors[0] }}</span>
+                            </validation-provider>
+                            <customSelect :selectLabel="selectLabel" :choices="countries"></customSelect>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check__input" id="checkPersonal"
+                                       v-model="checkForm"
+                                       @click="checkForm = !checkForm"
+                                >
+                                <label class="form-check__label" for="checkPersonal">
+                                    Я соглашаюсь на <span
+
+                                >
+                                    обработку
+                                </span>
+                                    моих персональных данных
+                                </label>
+                            </div>
+                            <div class="button-box">
+                                <button type="submit" class="custom-button"
+                                        :disabled="!checkForm"
+                                >
+                                    Заказать сейчас
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-box"
+                 :class="{isOpen: isOpen}"
+            >
                 <div class="menu-box__item">
                     <div class="menu-box__item-link">Какие преимущества</div>
                     <div class="menu-box__item-link">Что вы получаете</div>
@@ -22,7 +78,11 @@
             <header>
                 <div class="container">
                     <div class="header-content">
-                        <div class="burger-box">
+                        <div class="burger-box"
+                             @click.stop="toggle"
+                             v-click-outside="close"
+                             :class="{isOpen: isOpen}"
+                        >
                             <div class="burger-box__item"></div>
                             <div class="burger-box__item"></div>
                             <div class="burger-box__item"></div>
@@ -81,7 +141,9 @@
                             </div>
                         </div>
                         <div class="button-box">
-                            <button class="custom-button">
+                            <button class="custom-button"
+                                    @click.stop="openForm"
+                            >
                                 Заказать сейчас
                             </button>
                         </div>
@@ -333,7 +395,9 @@
                                     </div>
                                 </div>
                                 <div class="button-box">
-                                    <button class="custom-button">
+                                    <button class="custom-button"
+                                            @click.stop="openForm"
+                                    >
                                         Заказать сейчас
                                     </button>
                                 </div>
@@ -368,20 +432,146 @@
                     </div>
                 </div>
             </section>
+            <footer class="footer-box">
+                <div class="obj chart-01">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="207" viewBox="0 0 1920 207" fill="none">
+                        <path
+                            d="M2007.34 201.528L1999.92 201.17L1974.57 197.004L1948.86 196.818L1923.75 192.009L1898.83 186.266L1872.93 186.605L1847.61 183.235L1823.64 173.244L1797.25 175.223L1771.85 172.347L1747.45 164.638L1723.37 159.811L1698.38 156.341L1679.62 139.504L1657.99 129.375L1633.07 124.261L1612.83 111.525L1592.02 99.6688L1569.32 90.7629L1549.68 76.691L1520.29 72.6936L1491.6 68.8489L1463.77 60.8542L1440.19 51.216L1422.26 34.7376L1401.26 22.204L1380.4 9.16483L1356.12 2.67743L1330.87 2L1306.6 9.2984L1282.51 13.923L1257.62 15.3803L1232.87 18.1732L1210.19 28.6246L1185.99 33.9911L1161.83 40.2924L1136.39 45.5395L1112.11 53.5677L1088.2 62.5952L1063.32 70.404L1036.26 70.3539L1016.83 54.0758L993.413 63.139L970.809 73.5189L947.179 82.0742L922.069 86.1288L897.34 88.0774L871.753 91.2256L846.738 83.3549L820.387 82.4009L794.609 78.9974L768.902 74.0532L744.389 77.1347L719.995 76.7292L695.815 80.0683L671.589 82.5249L646.669 81.5256L622.657 85.8784L597.929 85.6255L574.514 94.5004L549.619 89.9449L525.463 90.7224L501.05 93.2124L476.773 93.1958L454.394 82.6275L429.742 86.1836L406.384 89.0124L380.811 93.544L361.537 109.736L337.386 118.611L318.305 134.226L298.186 148.925L275.272 160.157L250.04 166.525L224.262 168.671L197.051 173.022L169.602 169.008L142.189 172.211L114.792 171.448L86.8773 171.142L63.1779 181.424L37.5689 183.659L11.8646 186.149L-10.6223 199.105L-35.9233 203.05L-48.5739 205.848"
+                            stroke="#1E1E1E" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="logo-box">
+                            <img src="@/assets/img/logo.png" alt="">
+                            <div class="logo-box__title">
+                                АО «Кредит Европа Банк»
+                            </div>
+                        </div>
+                        <div class="footer-menu">
+                            <div class="footer-menu__item">
+                                <div class="footer-menu__item-link">О банке</div>
+                                <div class="footer-menu__item-link">Офисы и банкоматы</div>
+                                <div class="footer-menu__item-link">Новости</div>
+                                <div class="footer-menu__item-link">Вакансии</div>
+                                <div class="footer-menu__item-link">Реализуемое имущество</div>
+                            </div>
+                            <div class="footer-menu__item">
+                                <div class="footer-menu__item-link">Раскрытие информации</div>
+                                <div class="footer-menu__item-link">Ставки по вкладам</div>
+                                <div class="footer-menu__item-link">Условия и тарифы</div>
+                                <div class="footer-menu__item-link">Корпоративное управление</div>
+                                <div class="footer-menu__item-link">Карта сайта</div>
+                            </div>
+                        </div>
+                        <div class="menu-box__item">
+                            <div class="menu-box__item-phone">
+                                <span>По России</span>
+                                8 800 950 6570
+                            </div>
+                            <div class="menu-box__item-phone">
+                                <span>По Миру</span>
+                                8 800 950 6570
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </main>
     </div>
 </template>
 
 <script>
-  // import OrderForm from './components/OrderForm.vue'//
+
+  import ClickOutside from 'vue-click-outside'
 
   import Chart from './components/chart.vue'
+  import customInput from './components/customInput.vue'
+  import customSelect from './components/customSelect.vue'
+
+  import { ValidationProvider, extend } from 'vee-validate';
+  import { required } from 'vee-validate/dist/rules';
+
+  extend('required', {
+    ...required,
+    message: 'This field is required'
+  });
 
   export default {
     name: 'App',
+    data: () => ({
+      isOpen: false,
+      popup: false,
+      checkForm: false,
+      selectLabel: 'Гражданство',
+      value: '',
+      email: '',
+      name: '',
+      phone: '',
+      countries: [
+        {
+          label: 'Российская федерация',
+          value: "RU"
+        },
+        {
+          label: 'Белорусь',
+          value: "BL"
+        },
+        {
+          label: 'Украина',
+          value: "UK"
+        },
+        {
+          label: 'Казахстан',
+          value: "KZ"
+        },
+      ],
+      items: [
+        {
+          type: 'text',
+          label: 'ФИО',
+          model: 'name',
+        },
+        {
+          type: 'email',
+          label: 'Электронный адрес',
+          model: 'email',
+        },
+        {
+          type: 'text',
+          label: 'Номер телефона',
+          model: 'phone',
+        }
+      ]
+    }),
     components: {
-      // OrderForm
-      Chart
+      Chart,
+      customInput,
+      customSelect,
+      ValidationProvider
+    },
+    methods: {
+      open() {
+        this.isOpen = true;
+      },
+      close() {
+        this.isOpen = false;
+      },
+      toggle() {
+        this.isOpen ? this.close() : this.open();
+      },
+      openForm() {
+        this.popup = true
+      },
+      closeForm() {
+        this.popup = false
+      },
+    },
+    directives: {
+      ClickOutside
+    },
+    computed: {
+
     }
   }
 </script>
