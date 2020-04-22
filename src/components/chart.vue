@@ -29,6 +29,7 @@
 .chart-box {
   overflow: hidden;
   position: absolute;
+  z-index: 9;
   left: 0;
   width: 100%;
   &__item {

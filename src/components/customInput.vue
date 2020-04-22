@@ -15,7 +15,7 @@
             @blur="onBlur()"
             :type="type"
             :name="name"
-            :v-model="name"
+            v-model="data"
         >
         <div class="field-box__valid">
 <!--            <div class="field-box__valid-access"></div>-->
@@ -34,14 +34,15 @@
       dirty: false,
     }),
     methods: {
-      onClick(){
+      onClick() {
         this.$refs['input'].focus();
       },
-      onFocus(){
+      onFocus() {
         this.dirty = true;
       },
-      onBlur(){
-        this.data == '' ? this.dirty = false : this.dirty = true;
+      onBlur() {
+        this.data !== '' ? this.dirty = true : this.dirty = false;
+        console.log(this.dirty)
       },
     },
     computed: {
